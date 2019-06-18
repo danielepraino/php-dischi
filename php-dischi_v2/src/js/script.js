@@ -25,6 +25,7 @@ $( document ).ready(function() {
     method: 'GET',
     success: function(data) {
       var albums = JSON.parse(data);
+      console.log(albums);
       for (var key in albums) {
         var result = template(albums[key]);
         $(".albums-container").append(result);
