@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  justify-content: center;
+
+  .albums-container {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
+
+.album {
+  width: 250px;
+  height: 350px;
+  background-color: $album-bg-color;
+  text-align: center;
+  margin: 50px 50px 0 0;
+  display: flex;
+  flex-flow: column;
+
+  .cover {
+
+    img {
+      height: 200px;
+      margin-top: 25px;
+    }
+  }
+
+  .info {
+    color: $main-text-color;
+
+    p {
+
+      span {
+        color: $second-text-color;
+        font-size: 18px;
+      }
+    }
+  }
+}
