@@ -15,7 +15,7 @@
           </div>
           <div class="nav-select">
             <div class="filter-generic">
-              <span>Ordina per:</span>
+              <span>Ordina album per:</span>
               <select class="generic-select">
                 <option value="0" selected disabled>Seleziona</option>
                 <option value="release">data di uscita</option>
@@ -23,7 +23,7 @@
               </select>
             </div>
             <div class="filter-band">
-              <span>Ordina per artista:</span>
+              <span>Ordina album per artista:</span>
               <select class="band-select">
                 <option value="0" selected disabled>Seleziona</option>
               </select>

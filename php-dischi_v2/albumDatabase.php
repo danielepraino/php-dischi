@@ -60,9 +60,8 @@
       "title" => "Discovering The Waterfront",
       "band" => "Silverstein",
       "release" => "2006"
-    ],
+    ]
   ];
-
 
   if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
     if(!is_null($_GET["band"]) && strlen($_GET["band"]) > 0) {
