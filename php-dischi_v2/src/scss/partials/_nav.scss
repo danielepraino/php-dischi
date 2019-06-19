@@ -1,11 +1,15 @@
 .nav-container {
   color: $main-text-color;
-  background-color: $album-bg-color;
+  background-color: $nav-bg-color;
   margin: 50px 20px 0 50px;
   padding: 20px;
 
   h2 {
     margin-top: 0;
+
+    i {
+      padding-left: 10px;
+    }
   }
 }
 
