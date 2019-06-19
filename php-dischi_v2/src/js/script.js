@@ -16,24 +16,50 @@ var albumTemplate =
   "</div>" +
 "</div>";
 
+var optionTemplate =
+"<option value='{{band}}'>{{band}}" +
+"</option>";
+
 var template = Handlebars.compile(albumTemplate);
+var template2 = Handlebars.compile(optionTemplate);
 
 $( document ).ready(function() {
 
+function callAlbums() {
+  $(".albums-container").empty();
   $.ajax({
-    url: "http://localhost:8888/45-php-dischi/php-dischi_v2/albumDatabase.php",
+    url: "albumDatabase.php",
     method: 'GET',
+    data: ({
+      band: $('.band-select').val(),
+      filter: $('.generic-select').val()
+    }),
     success: function(data) {
       var albums = JSON.parse(data);
-      console.log(albums);
       for (var key in albums) {
         var result = template(albums[key]);
+        var result2 = template2(albums[key]);
         $(".albums-container").append(result);
+        console.log($('.band-select').val());
+        if ($('.band-select').val() == null && $('.generic-select').val() == null) {
+          $(".band-select").append(result2);
+        }
       }
     },
     error: function() {
       alert("errore");
     }
   });
+};
+
+$(".band-select").change(function(){
+  callAlbums();
+});
+
+$(".generic-select").change(function(){
+  callAlbums();
+});
+
+callAlbums();
 
 });

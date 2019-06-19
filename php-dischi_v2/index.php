@@ -8,7 +8,29 @@
   </head>
   <body>
     <div class="container">
-      <h1>v2</h2>
+      <nav>
+        <div class="nav-container">
+          <div class="logo">
+            <h2>Album viewer</h2>
+          </div>
+          <div class="nav-select">
+            <div class="filter-generic">
+              <span>Ordina per:</span>
+              <select class="generic-select">
+                <option value="0" selected disabled>Seleziona</option>
+                <option value="release">data di uscita</option>
+                <option value="alphabetic">ordine alfabetico</option>
+              </select>
+            </div>
+            <div class="filter-band">
+              <span>Ordina per artista:</span>
+              <select class="band-select">
+                <option value="0" selected disabled>Seleziona</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </nav>
       <div class="albums-container">
       </div>
     </div>

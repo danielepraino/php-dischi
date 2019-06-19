@@ -63,7 +63,31 @@
     ],
   ];
 
+
   if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+    if(!is_null($_GET["band"]) && strlen($_GET["band"]) > 0) {
+      $bandArr = [];
+      foreach($albumArr as $album => $albumVal) {
+        if($albumVal["band"] == $_GET["band"]) {
+          $bandArr[$album] = $albumVal;
+        }
+      }
+      $albumArr = $bandArr;
+    } else if (!is_null($_GET["filter"]) && strlen($_GET["filter"]) > 0) {
+      if ($_GET["filter"] == "release") {
+        $filterArr = [];
+          foreach ($albumArr as $album => $albumVal) {
+            $filterArr[$album] = $albumVal["release"];
+          }
+        array_multisort($filterArr, SORT_ASC, $albumArr);
+      } else if ($_GET["filter"] == "alphabetic") {
+        $filterArr = [];
+          foreach ($albumArr as $album => $albumVal) {
+            $filterArr[$album] = $albumVal["title"];
+          }
+        array_multisort($filterArr, SORT_STRING, $albumArr);
+      }
+    }
     echo json_encode($albumArr);
   }
 

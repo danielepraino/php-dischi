@@ -14,6 +14,19 @@ let mix = require('laravel-mix');
  mix.js('src/js/script.js', 'public/js/script.js')
  mix.sass('src/scss/main.scss', 'public/css/main.css');
 
+ mix.webpackConfig({
+    module: {
+        rules: [
+            {
+                test: /\.handlebars?$/,
+                loader: 'handlebars-loader'
+            }
+        ]
+    },
+    node: {
+       fs: "empty"
+    }
+ });
 // Full API
 // mix.js(src, output);
 // mix.react(src, output); <-- Identical to mix.js(), but registers React Babel compilation.

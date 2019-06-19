@@ -348,15 +348,26 @@ template {
 [hidden] {
   display: none;
 }
+.nav-container {
+  color: #FFF;
+  background-color: #333;
+  margin: 50px 0 0 50px;
+  padding: 20px 0 20px 20px;
+}
+
+.nav-container h2 {
+  margin-top: 0;
+}
+
+.nav-select .orderby {
+  margin-top: 10px;
+}
+
 .container {
   display: -webkit-flex;
   display: flex;
   -webkit-justify-content: center;
           justify-content: center;
-}
-
-.container h1 {
-  color: #FFF;
 }
 
 .container .albums-container {
@@ -396,7 +407,7 @@ template {
 }
 
 body {
-  background-color: #000;
+  background-color: #111;
   font-family: "Lato", sans-serif;
 }
 

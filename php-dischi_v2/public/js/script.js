@@ -5071,7 +5071,7 @@ module.exports = handlebars;
 
 // Publish a Node.js require() handler for .handlebars and .hbs files
 function extension(module, filename) {
-  var fs = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'fs'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+  var fs = __webpack_require__(/*! fs */ "./node_modules/node-libs-browser/mock/empty.js");
   var templateString = fs.readFileSync(filename, 'utf8');
   module.exports = handlebars.compile(templateString);
 }
@@ -15694,6 +15694,17 @@ return jQuery;
 
 /***/ }),
 
+/***/ "./node_modules/node-libs-browser/mock/empty.js":
+/*!******************************************************!*\
+  !*** ./node_modules/node-libs-browser/mock/empty.js ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -15739,24 +15750,47 @@ var Handlebars = __webpack_require__(/*! handlebars */ "./node_modules/handlebar
 
 
 var albumTemplate = "<div class='album'>" + "<div class='cover'>" + "<img src='{{img}}' alt='{{title}}'>" + "</div>" + "<div class='info'>" + "<h3>{{title}}</h3>" + "<p>" + "<span>{{band}}<br></span>" + "{{release}}</p>" + "</div>" + "</div>";
+var optionTemplate = "<option value='{{band}}'>{{band}}" + "</option>";
 var template = Handlebars.compile(albumTemplate);
+var template2 = Handlebars.compile(optionTemplate);
 $(document).ready(function () {
-  $.ajax({
-    url: "http://localhost:8888/45-php-dischi/php-dischi_v2/albumDatabase.php",
-    method: 'GET',
-    success: function success(data) {
-      var albums = JSON.parse(data);
-      console.log(albums);
+  function callAlbums() {
+    $(".albums-container").empty();
+    $.ajax({
+      url: "albumDatabase.php",
+      method: 'GET',
+      data: {
+        band: $('.band-select').val(),
+        filter: $('.generic-select').val()
+      },
+      success: function success(data) {
+        var albums = JSON.parse(data);
 
-      for (var key in albums) {
-        var result = template(albums[key]);
-        $(".albums-container").append(result);
+        for (var key in albums) {
+          var result = template(albums[key]);
+          var result2 = template2(albums[key]);
+          $(".albums-container").append(result);
+          console.log($('.band-select').val());
+
+          if ($('.band-select').val() == null && $('.generic-select').val() == null) {
+            $(".band-select").append(result2);
+          }
+        }
+      },
+      error: function error() {
+        alert("errore");
       }
-    },
-    error: function error() {
-      alert("errore");
-    }
+    });
+  }
+
+  ;
+  $(".band-select").change(function () {
+    callAlbums();
   });
+  $(".generic-select").change(function () {
+    callAlbums();
+  });
+  callAlbums();
 });
 
 /***/ }),
